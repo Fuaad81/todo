@@ -1,0 +1,94 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:todo/todo.dart';
+
+class Add extends StatefulWidget {
+  const Add({super.key});
+
+  @override
+  State<Add> createState() => _AddState();
+}
+
+class _AddState extends State<Add> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 380,
+                  height: 100,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 50),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          labelText: 'enter a text',
+                          labelStyle: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 250, top: 30),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Todo(),
+                          ));
+                      Fluttertoast.showToast(
+                          msg: 'cancelled',
+                          backgroundColor: Colors.red,
+                          toastLength: Toast.LENGTH_LONG,
+                          timeInSecForIosWeb: 3);
+                    },
+                    child: Text(
+                      'cancel',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 30),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Todo(),
+                          ));
+                          Fluttertoast.showToast(
+                          msg: 'added',
+                          backgroundColor: Colors.red,
+                          toastLength: Toast.LENGTH_LONG,
+                          timeInSecForIosWeb: 3);
+                    
+                    },
+                    child: Text(
+                      'ok',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
